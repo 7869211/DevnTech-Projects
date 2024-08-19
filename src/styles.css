@@ -1,0 +1,30 @@
+body{
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    
+}
+.todo-container{
+    width: 300px;
+    padding: auto;
+   background-color: aliceblue;
+   border-radius: 7px;
+}
+
+.todo-items {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn{
+    width: 300px;
+    padding: 10px 20px;
+    border:2px solid;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: rgb(188, 120, 37);
+    color: rgb(19, 11, 11);
+    cursor: pointer;
+    justify-content: center;
+}
