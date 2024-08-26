@@ -11,6 +11,7 @@
   }
   
   .footer-message {
+    border-radius: 0rem 0rem 1rem 1rem;
     height: 1rem; 
     width: 31rem;
     position: absolute;
@@ -20,23 +21,29 @@
     padding-bottom: 1.5rem;
     font-size: 0.8rem;
     color: #999;
-    border-radius: 1rem; 
-    background-color:white;
+    background-color:#FFFFFF;
     box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;     
+    display: flex;
+    align-items: center;     
               
     }
-    
-    
-    .no-results-container{
-
-        display: flex;
+    .searching-icon{
+      display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
-      margin-top: 10px; 
+      padding: 1.4rem;
+      margin-top: 0.6rem; 
+    }
+    
+    .no-results-container{
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.4rem;
+      margin-top: 0.6rem; 
     }
     
     

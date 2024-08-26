@@ -5,6 +5,7 @@ import LoadingIcon from '../Icons/LoadingIcon';
 import TagComponent from './TagComponent';
 import '../Styles/Main.css';
 import NoResultsIcon from '../Icons/NoResultsIcon';
+import SearchingResults from '../Icons/SearchingResults';
 
 
 function MainComponent() {
@@ -14,6 +15,7 @@ function MainComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showTime, setTime] = useState('');
   const [isError, setError] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const tags = [
     { text: 'Languages' },
@@ -32,17 +34,20 @@ function MainComponent() {
   }, []);
 
   const fetchResults = useCallback(async (term) => {
-    if (!term) {
-      setNoResults(true);
+
+    if (term.trim() === '') {
       setResults([]);
       setLoading(false);
-      setError(true);
+      setSearching(true);
+      setNoResults(false);
+      setError(false);
       return;
     }
 
     setLoading(true);
     setNoResults(false);
     setError(false);
+    setSearching(false);
     try {
       const response = await fetch(`https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`);
 
@@ -76,9 +81,9 @@ function MainComponent() {
 
   const debounceFetchResults = useCallback(
     debounce((term) => {
-      if (term) {
+      
         fetchResults(term);
-      }
+
     }, 300),
     [fetchResults]
   );
@@ -129,6 +134,13 @@ function MainComponent() {
             <p>Searching...</p>
           </div>
         )}
+
+        {searching && (
+            <div className="searching-icon">
+              <SearchingResults />
+            </div>
+          )
+        }
 
         <ResultItems results={results} />
       </div>

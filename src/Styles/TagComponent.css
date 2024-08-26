@@ -43,14 +43,14 @@
   transition: color 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .tag {
     padding: 0.5rem 0.75rem;
     font-size: 0.8125rem; 
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .tag {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem; 

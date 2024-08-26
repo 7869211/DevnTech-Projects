@@ -3,9 +3,12 @@ import '../Styles/ResultItems.css';
 
 const ResultItems = ({ results }) => {
   const handleTabButton = (event, url) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === 'click') {
       window.open(url, '_blank');
     }
+  };
+  const handleClick=(url) => {
+    window.open(url, '_blank');
   };
 
   return (
@@ -17,6 +20,7 @@ const ResultItems = ({ results }) => {
             className="result-item"
             tabIndex={0}
             onKeyDown={(event) => handleTabButton(event, item.url)}
+            onClick={()=>handleClick(item.url)}
             role="button"
             aria-label={`Open details for ${item.title}`}
           >

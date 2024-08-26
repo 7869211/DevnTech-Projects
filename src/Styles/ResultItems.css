@@ -17,7 +17,9 @@
   
   cursor: pointer;
 }
-
+.result-item:hover{
+background-color: #F2F4F8;
+}
 .result-item img {
   width: 2.5rem;
   height: 2.5rem;
