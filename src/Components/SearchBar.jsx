@@ -2,11 +2,11 @@ import React from 'react';
 import '../Styles/SearchBar.css';
 import SearchIcon from '../Icons/SearchIcon';
 
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ searchTerm, setSearchTerm, isError }) => {
   return (
-    <div className="search-bar">
+    <div className={`search-bar ${isError ? 'error' : ''}`}>
       <span className="search-icon">
-        <SearchIcon /> 
+        <SearchIcon />
       </span>
       <input
         type="text"

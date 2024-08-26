@@ -15,7 +15,9 @@
 .search-bar:focus-within {
   border-color: #6833FF;
 }
-
+.search-bar.error {
+  border-color:#ED2E7E; 
+}
 .search-icon {
   margin-right: 0.625rem;
   color: #7d7d7d;

@@ -13,6 +13,7 @@ function MainComponent() {
   const [noResults, setNoResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showTime, setTime] = useState('');
+  const [isError, setError] = useState(false);
 
   const tags = [
     { text: 'Languages' },
@@ -35,11 +36,13 @@ function MainComponent() {
       setNoResults(true);
       setResults([]);
       setLoading(false);
+      setError(true);
       return;
     }
 
     setLoading(true);
     setNoResults(false);
+    setError(false);
     try {
       const response = await fetch(`https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`);
 
@@ -51,6 +54,7 @@ function MainComponent() {
       if (Array.isArray(data) && data.length === 0) {
         setResults([]);
         setNoResults(true);
+        setError(true);
       } else if (Array.isArray(data)) {
         setNoResults(false);
         setResults(data);
@@ -58,11 +62,13 @@ function MainComponent() {
         console.error('Unexpected API response format:', data);
         setResults([]);
         setNoResults(true);
+        setError(true);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
       setNoResults(true);
       setResults([]);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -89,7 +95,7 @@ function MainComponent() {
     <div className="main">
       <div className="main-container">
         <div className="search-bar-container">
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} isError={isError} />
           <div className="tags-container">
             {tags.map((tag, index) => (
               <TagComponent key={index} text={tag.text} onClick={handleTagClick} />
