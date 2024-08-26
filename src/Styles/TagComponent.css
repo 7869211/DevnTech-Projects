@@ -1,0 +1,58 @@
+.tags-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: -1.3rem;
+
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgb(235, 240, 245);
+  border-radius: 0.75rem; 
+  padding: 0.5rem 1rem;
+  color: #5732cc;
+  font-weight: bold;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #865cff;
+  color: #ffffff;
+}
+
+  .tag:focus {
+    background-color: #6833FF;
+
+    color: #ffffff;
+  }
+
+.tag:hover .tag-icon-class,
+.tag:focus .tag-icon-class {
+  color: #ffffff;
+}
+
+.tag-icon-class {
+  width: 1.5rem; 
+  height: 1rem; 
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .tag {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem; 
+  }
+}
+
+@media (max-width: 480px) {
+  .tag {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem; 
+  }
+}
