@@ -36,6 +36,10 @@
 .tag:focus .tag-icon-class {
   color: #ffffff;
 }
+.ellipse-circle:hover,
+.ellipse-circle:focus{
+  color: #ffffff;
+}
 
 .tag-icon-class {
   width: 1.5rem; 

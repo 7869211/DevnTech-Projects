@@ -15,7 +15,7 @@ const TagIcon = () => (
       strokeWidth="1.5"
     />
     <circle
-    
+      className='ellipse-circle'
       cx="5.735"
       cy="6.272"
       r="1"
