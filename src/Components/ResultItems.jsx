@@ -32,7 +32,7 @@ const ResultItems = ({ results }) => {
           </div>
         ))
       ) : (
-        <p></p>
+        <p>no</p>
       )}
     </div>
   );

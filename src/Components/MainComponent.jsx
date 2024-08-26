@@ -138,6 +138,9 @@ function MainComponent() {
         {searching && (
             <div className="searching-icon">
               <SearchingResults />
+              <div className="footer-message">
+            <p>no results</p>
+          </div>
             </div>
           )
         }
