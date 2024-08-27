@@ -15,6 +15,13 @@
   background-color: white;
   cursor: pointer;
 }
+.hidden {
+  opacity: 0;
+  pointer-events: none; 
+  display: none;
+  visibility: hidden;
+
+}
 
 .result-item:hover{
 background-color: #F2F4F8;
@@ -71,9 +78,5 @@ background-color: #F2F4F8;
 
   .result-item-content h3 {
     font-size: 1rem;
-  }
-
-  .description-para {
-    font-size: 0.75rem;
   }
 }

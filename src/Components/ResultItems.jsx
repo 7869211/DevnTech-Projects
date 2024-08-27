@@ -7,7 +7,8 @@ const ResultItems = ({ results }) => {
       window.open(url, '_blank');
     }
   };
-  const handleClick=(url) => {
+
+  const handleClick = (url) => {
     window.open(url, '_blank');
   };
 
@@ -20,7 +21,7 @@ const ResultItems = ({ results }) => {
             className="result-item"
             tabIndex={0}
             onKeyDown={(event) => handleTabButton(event, item.url)}
-            onClick={()=>handleClick(item.url)}
+            onClick={() => handleClick(item.url)}
             role="button"
             aria-label={`Open details for ${item.title}`}
           >
@@ -31,9 +32,8 @@ const ResultItems = ({ results }) => {
             </div>
           </div>
         ))
-      ) : 
-      (
-        <p>no</p>
+      ) : (
+        <p className="hidden"></p> 
       )}
     </div>
   );

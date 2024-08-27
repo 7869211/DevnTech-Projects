@@ -106,9 +106,12 @@ function MainComponent() {
     setSearchTerm(tagText);
   };
 
+
+  const containerClassName = results.length > 3 ? 'main-container' : 'main-container reduced-height';
+
   return (
     <div className="main">
-      <div className="main-container">
+      <div className={containerClassName}>
         <div className="search-bar-container">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} isError={isError} />
           <div className="tags-container">
