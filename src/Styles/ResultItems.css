@@ -8,15 +8,14 @@
   overflow-y: auto;
   margin-left: -1rem;
 }
-
 .result-item {
   display: flex;
   align-items: flex-start;
   padding: 1rem;
   background-color: white;
-  
   cursor: pointer;
 }
+
 .result-item:hover{
 background-color: #F2F4F8;
 }

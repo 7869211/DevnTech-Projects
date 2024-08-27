@@ -17,4 +17,5 @@ function TagComponent({ text, onClick, isActive }) {
   );
 }
 
+
 export default TagComponent;

@@ -17,6 +17,7 @@ const SearchBar = ({ searchTerm, setSearchTerm, isError }) => {
       />
     </div>
   );
+  
 };
 
 export default SearchBar;

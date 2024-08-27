@@ -31,7 +31,8 @@ const ResultItems = ({ results }) => {
             </div>
           </div>
         ))
-      ) : (
+      ) : 
+      (
         <p>no</p>
       )}
     </div>

@@ -32,7 +32,6 @@
   font-size: 0.875rem;
   color:black;
 }
-
 .search-input::placeholder {
   color: #9b9b9b;
   opacity: 1;

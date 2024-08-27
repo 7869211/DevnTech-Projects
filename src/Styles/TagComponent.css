@@ -19,6 +19,7 @@
   font-size: 0.875rem;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative; 
 }
 
 .tag:hover {
@@ -26,19 +27,19 @@
   color: #ffffff;
 }
 
-  .tag:focus {
-    background-color: #6833FF;
-
-    color: #ffffff;
-  }
+.tag:focus {
+  background-color: #6833FF;
+  color: #ffffff;
+}
 
 .tag:hover .tag-icon-class,
 .tag:focus .tag-icon-class {
   color: #ffffff;
 }
-.ellipse-circle:hover,
-.ellipse-circle:focus{
-  color: #ffffff;
+
+.tag:hover .ellipse-circle,
+.tag:focus .ellipse-circle {
+  stroke: #ffffff; 
 }
 
 .tag-icon-class {

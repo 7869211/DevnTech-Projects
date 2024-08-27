@@ -7,7 +7,6 @@ import '../Styles/Main.css';
 import NoResultsIcon from '../Icons/NoResultsIcon';
 import SearchingResults from '../Icons/SearchingResults';
 
-
 function MainComponent() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,6 +15,7 @@ function MainComponent() {
   const [showTime, setTime] = useState('');
   const [isError, setError] = useState(false);
   const [searching, setSearching] = useState(false);
+  const [abortController, setAbortController] = useState(null);
 
   const tags = [
     { text: 'Languages' },
@@ -34,7 +34,11 @@ function MainComponent() {
   }, []);
 
   const fetchResults = useCallback(async (term) => {
-
+//abort controller
+    const controller = new AbortController();
+    const { signal } = controller;
+    console.log("aborted");
+  
     if (term.trim() === '') {
       setResults([]);
       setLoading(false);
@@ -43,19 +47,19 @@ function MainComponent() {
       setError(false);
       return;
     }
-
+  
     setLoading(true);
     setNoResults(false);
     setError(false);
     setSearching(false);
     try {
-      const response = await fetch(`https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`);
-
+      const response = await fetch(`https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`, { signal });
+  
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
       const data = await response.json();
-
+  
       if (Array.isArray(data) && data.length === 0) {
         setResults([]);
         setNoResults(true);
@@ -70,7 +74,11 @@ function MainComponent() {
         setError(true);
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+      } else {
+        console.error('Error fetching data:', error);
+      }
       setNoResults(true);
       setResults([]);
       setError(true);
@@ -78,19 +86,21 @@ function MainComponent() {
       setLoading(false);
     }
   }, []);
+  
 
   const debounceFetchResults = useCallback(
     debounce((term) => {
-      
-        fetchResults(term);
-
+      fetchResults(term);
     }, 300),
     [fetchResults]
   );
 
   useEffect(() => {
+    if (abortController) {
+      abortController.abort(); // Abort any ongoing fetch request
+    }
     debounceFetchResults(searchTerm);
-  }, [searchTerm, debounceFetchResults]);
+  }, [searchTerm, debounceFetchResults, abortController]);
 
   const handleTagClick = (tagText) => {
     setSearchTerm(tagText);
@@ -136,14 +146,13 @@ function MainComponent() {
         )}
 
         {searching && (
-            <div className="searching-icon">
-              <SearchingResults />
-              <div className="footer-message">
-            <p>no results</p>
-          </div>
+          <div className="searching-icon">
+            <SearchingResults />
+            <div className="footer-message">
+              <p>no results</p>
             </div>
-          )
-        }
+          </div>
+        )}
 
         <ResultItems results={results} />
       </div>

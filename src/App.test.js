@@ -6,7 +6,7 @@ describe('MainComponent', () => {
   test('renders all tags correctly', () => {
     render(<MainComponent />);
     
-    // Check if all tags are rendered
+    
     expect(screen.getByText(/Languages/i)).toBeInTheDocument();
     expect(screen.getByText(/Build/i)).toBeInTheDocument();
     expect(screen.getByText(/Design/i)).toBeInTheDocument();
@@ -38,7 +38,6 @@ describe('MainComponent', () => {
       target: { value: 'nonexistent search term' },
     });
 
-    // The no results message should appear
     await waitFor(() => {
       expect(screen.getByText(/Something wrong happened but this is not your fault :\)/i)).toBeInTheDocument();
     });
@@ -48,6 +47,6 @@ describe('MainComponent', () => {
     render(<MainComponent />);
     
     // The time should be displayed in the footer
-    expect(screen.getByText(/:/)).toBeInTheDocument(); // A simple check that looks for the presence of a colon, typical in time formats
+    expect(screen.getByText(/:/)).toBeInTheDocument();
   });
 });
