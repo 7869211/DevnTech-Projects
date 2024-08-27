@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     width: 20rem;
-    
     height: 100vh; 
     width: 100vw; 
     background-color:rgb(219, 225, 232); 
@@ -16,12 +15,12 @@
     padding-bottom: 3rem;
     flex-direction: column;
     height: 23rem; 
-    width: 29rem;
+    width: 28rem;
     background-color: white;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-    transition: height 0.3s ease; /* Smooth transition for height changes */
+    transition: height 0.3s ease; 
   }
   
   .main-container.reduced-height {
@@ -31,7 +30,7 @@
   .footer-message {
     border-radius: 0rem 0rem 1rem 1rem;
     height: 1rem;
-    width: 31rem;
+    width: 30rem;
     position: absolute;
     bottom: 0;
     left: 0;

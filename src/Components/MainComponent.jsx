@@ -6,6 +6,7 @@ import TagComponent from './TagComponent';
 import '../Styles/Main.css';
 import NoResultsIcon from '../Icons/NoResultsIcon';
 import SearchingResults from '../Icons/SearchingResults';
+import TimeShow from '../Components/TimeShow';
 
 function MainComponent() {
   const [results, setResults] = useState([]);
@@ -34,11 +35,11 @@ function MainComponent() {
   }, []);
 
   const fetchResults = useCallback(async (term) => {
-//abort controller
-    const controller = new AbortController();
-    const { signal } = controller;
-    console.log("aborted");
-  
+    // Abort controller
+    const abortcontroller = new AbortController();
+    const { signal } = abortcontroller;
+    setAbortController(abortcontroller); 
+
     if (term.trim() === '') {
       setResults([]);
       setLoading(false);
@@ -52,8 +53,12 @@ function MainComponent() {
     setNoResults(false);
     setError(false);
     setSearching(false);
+  
     try {
-      const response = await fetch(`https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`, { signal });
+      const response = await fetch(
+        `https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`,
+        { signal }
+      );
   
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
@@ -86,7 +91,6 @@ function MainComponent() {
       setLoading(false);
     }
   }, []);
-  
 
   const debounceFetchResults = useCallback(
     debounce((term) => {
@@ -97,15 +101,15 @@ function MainComponent() {
 
   useEffect(() => {
     if (abortController) {
-      abortController.abort(); // Abort any ongoing fetch request
+      abortController.abort(); 
     }
+    setResults([]);
     debounceFetchResults(searchTerm);
-  }, [searchTerm, debounceFetchResults, abortController]);
+  }, [searchTerm, debounceFetchResults]);
 
   const handleTagClick = (tagText) => {
     setSearchTerm(tagText);
   };
-
 
   const containerClassName = results.length > 3 ? 'main-container' : 'main-container reduced-height';
 
@@ -131,7 +135,7 @@ function MainComponent() {
           <div className="no-results-container">
             <NoResultsIcon />
             <div className="footer-message">
-              <p>Something wrong happened but this is not your fault :)</p>
+              <p>No Results</p>
             </div>
           </div>
         )}
@@ -160,9 +164,7 @@ function MainComponent() {
         <ResultItems results={results} />
       </div>
 
-      <div className="timeShow">
-        <p>{showTime}</p>
-      </div>
+      <TimeShow time={showTime} />
     </div>
   );
 }

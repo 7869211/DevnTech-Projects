@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Styles/ResultItems.css';
+import VectorIcon from '../Icons/VectorIcon';
 
 const ResultItems = ({ results }) => {
   const handleTabButton = (event, url) => {
@@ -27,7 +28,10 @@ const ResultItems = ({ results }) => {
           >
             <img src={item.image} alt={item.title} />
             <div className="result-item-content">
-              <h3>{item.title}</h3>
+              <div className="result-item-header">
+                <h3>{item.title}</h3>
+                <VectorIcon />
+              </div>
               <p className="description-para">{item.description}</p>
             </div>
           </div>

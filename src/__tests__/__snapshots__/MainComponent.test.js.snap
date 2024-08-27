@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainComponent renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <div
+      class="main-container reduced-height"
+    >
+      <div
+        class="search-bar-container"
+      >
+        <div
+          class="search-bar "
+        >
+          <span
+            class="search-icon"
+          >
+            <svg
+              fill="none"
+              height="10"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M16.9816 9.61047C16.9816 13.1526 13.9625 16.2209 9.9908 16.2209C6.01908 16.2209 3 13.1526 3 9.61047C3 6.06828 6.01908 3 9.9908 3C13.9625 3 16.9816 6.06828 16.9816 9.61047ZM15.3467 17.7247C13.7988 18.6721 11.9614 19.2209 9.9908 19.2209C4.47303 19.2209 0 14.9182 0 9.61047C0 4.30275 4.47303 0 9.9908 0C15.5086 0 19.9816 4.30275 19.9816 9.61047C19.9816 11.9596 19.1054 14.1118 17.6503 15.7813L24.0019 21.9159L21.8441 24L15.3467 17.7247Z"
+                fill="black"
+                fill-rule="evenodd"
+                opacity="0.8"
+              />
+            </svg>
+          </span>
+          <input
+            class="search-input"
+            placeholder="Search technologies we use at DC..."
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="tags-container"
+        >
+          <div
+            class="tag "
+            tabindex="-1"
+          >
+            <span
+              class="icon"
+            >
+              <svg
+                class="tag-icon-class"
+                fill="none"
+                height="1rem"
+                viewBox="0 0 16 16"
+                width="1rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.27205 1.56607C8.10867 1.5326 8.92122 1.85029 9.51327 2.44235L13.8062 6.73528C14.9778 7.90685 14.9778 9.80635 13.8062 10.9779L10.9778 13.8063C9.8062 14.9779 7.90671 14.9779 6.73514 13.8063L2.44221 9.51342C1.85015 8.92136 1.53246 8.10882 1.56592 7.27219L1.7485 2.70787C1.76933 2.18698 2.18683 1.76948 2.70773 1.74864L7.27205 1.56607Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <circle
+                  class="ellipse-circle"
+                  cx="5.735"
+                  cy="6.272"
+                  fill="none"
+                  r="1"
+                  stroke="#6833FF"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="text"
+            >
+              Languages
+            </span>
+          </div>
+          <div
+            class="tag "
+            tabindex="-1"
+          >
+            <span
+              class="icon"
+            >
+              <svg
+                class="tag-icon-class"
+                fill="none"
+                height="1rem"
+                viewBox="0 0 16 16"
+                width="1rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.27205 1.56607C8.10867 1.5326 8.92122 1.85029 9.51327 2.44235L13.8062 6.73528C14.9778 7.90685 14.9778 9.80635 13.8062 10.9779L10.9778 13.8063C9.8062 14.9779 7.90671 14.9779 6.73514 13.8063L2.44221 9.51342C1.85015 8.92136 1.53246 8.10882 1.56592 7.27219L1.7485 2.70787C1.76933 2.18698 2.18683 1.76948 2.70773 1.74864L7.27205 1.56607Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <circle
+                  class="ellipse-circle"
+                  cx="5.735"
+                  cy="6.272"
+                  fill="none"
+                  r="1"
+                  stroke="#6833FF"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="text"
+            >
+              Build
+            </span>
+          </div>
+          <div
+            class="tag "
+            tabindex="-1"
+          >
+            <span
+              class="icon"
+            >
+              <svg
+                class="tag-icon-class"
+                fill="none"
+                height="1rem"
+                viewBox="0 0 16 16"
+                width="1rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.27205 1.56607C8.10867 1.5326 8.92122 1.85029 9.51327 2.44235L13.8062 6.73528C14.9778 7.90685 14.9778 9.80635 13.8062 10.9779L10.9778 13.8063C9.8062 14.9779 7.90671 14.9779 6.73514 13.8063L2.44221 9.51342C1.85015 8.92136 1.53246 8.10882 1.56592 7.27219L1.7485 2.70787C1.76933 2.18698 2.18683 1.76948 2.70773 1.74864L7.27205 1.56607Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <circle
+                  class="ellipse-circle"
+                  cx="5.735"
+                  cy="6.272"
+                  fill="none"
+                  r="1"
+                  stroke="#6833FF"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="text"
+            >
+              Design
+            </span>
+          </div>
+          <div
+            class="tag "
+            tabindex="-1"
+          >
+            <span
+              class="icon"
+            >
+              <svg
+                class="tag-icon-class"
+                fill="none"
+                height="1rem"
+                viewBox="0 0 16 16"
+                width="1rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.27205 1.56607C8.10867 1.5326 8.92122 1.85029 9.51327 2.44235L13.8062 6.73528C14.9778 7.90685 14.9778 9.80635 13.8062 10.9779L10.9778 13.8063C9.8062 14.9779 7.90671 14.9779 6.73514 13.8063L2.44221 9.51342C1.85015 8.92136 1.53246 8.10882 1.56592 7.27219L1.7485 2.70787C1.76933 2.18698 2.18683 1.76948 2.70773 1.74864L7.27205 1.56607Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <circle
+                  class="ellipse-circle"
+                  cx="5.735"
+                  cy="6.272"
+                  fill="none"
+                  r="1"
+                  stroke="#6833FF"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="text"
+            >
+              Cloud
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="result-items"
+      >
+        <p
+          class="hidden"
+        />
+      </div>
+    </div>
+    <div
+      class="timeShow"
+    >
+      <p />
+    </div>
+  </div>
+</DocumentFragment>
+`;

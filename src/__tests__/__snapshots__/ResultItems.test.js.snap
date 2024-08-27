@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultItems renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="result-items"
+  >
+    <div
+      aria-label="Open details for Test Title 1"
+      class="result-item"
+      role="button"
+      tabindex="0"
+    >
+      <img
+        alt="Test Title 1"
+        src="test-image-1.jpg"
+      />
+      <div
+        class="result-item-content"
+      >
+        <h3>
+          Test Title 1
+        </h3>
+        <p
+          class="description-para"
+        >
+          Test Description 1
+        </p>
+      </div>
+    </div>
+    <div
+      aria-label="Open details for Test Title 2"
+      class="result-item"
+      role="button"
+      tabindex="0"
+    >
+      <img
+        alt="Test Title 2"
+        src="test-image-2.jpg"
+      />
+      <div
+        class="result-item-content"
+      >
+        <h3>
+          Test Title 2
+        </h3>
+        <p
+          class="description-para"
+        >
+          Test Description 2
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ResultItems renders correctly with VectorIcon 1`] = `
+<DocumentFragment>
+  <div
+    class="result-items"
+  >
+    <div
+      aria-label="Open details for Test Title 1"
+      class="result-item"
+      role="button"
+      tabindex="0"
+    >
+      <img
+        alt="Test Title 1"
+        src="test-image-1.jpg"
+      />
+      <div
+        class="result-item-content"
+      >
+        <div
+          class="result-item-header"
+        >
+          <h3>
+            Test Title 1
+          </h3>
+          <div
+            data-testid="vector-icon"
+          >
+            Mocked Vector Icon
+          </div>
+        </div>
+        <p
+          class="description-para"
+        >
+          Test Description 1
+        </p>
+      </div>
+    </div>
+    <div
+      aria-label="Open details for Test Title 2"
+      class="result-item"
+      role="button"
+      tabindex="0"
+    >
+      <img
+        alt="Test Title 2"
+        src="test-image-2.jpg"
+      />
+      <div
+        class="result-item-content"
+      >
+        <div
+          class="result-item-header"
+        >
+          <h3>
+            Test Title 2
+          </h3>
+          <div
+            data-testid="vector-icon"
+          >
+            Mocked Vector Icon
+          </div>
+        </div>
+        <p
+          class="description-para"
+        >
+          Test Description 2
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
