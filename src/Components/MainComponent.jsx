@@ -111,7 +111,7 @@ function MainComponent() {
     setSearchTerm(tagText);
   };
 
-  const containerClassName = results.length > 3 ? 'main-container' : 'main-container reduced-height';
+  const containerClassName = results.length > 2 ? 'main-container' : 'main-container reduced-height';
 
   return (
     <div className="main">
