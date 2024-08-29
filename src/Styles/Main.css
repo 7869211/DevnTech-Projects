@@ -1,95 +1,132 @@
-  
-  .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20rem;
-    height: 100vh; 
-    width: 100vw; 
-    background-color:rgb(219, 225, 232); 
+.main {
+  width: 90rem; /* 1440px converted to rem */
+  height: 58.4375rem; /* 935px converted to rem */
+  position: relative; /* Ensure that child elements like footer and divider are positioned relative to this container */
+  background-color: rgba(237, 242, 247, 1);
+  margin: 0 auto; /* Center the main container within the viewport */
+  box-sizing: border-box;
+}
+
+.main-container {
+  position: relative;
+  width: 43.125rem; /* 690px converted to rem */
+  height: 37.5rem; /* 600px converted to rem */
+  margin: 0 auto; 
+  padding: 1.5rem 0 0 0; /* 24px converted to rem */
+  gap: 1.25rem; /* 20px converted to rem */
+  border-radius: 1.25rem 1.25rem 0 0; /* 20px converted to rem */
+  background-color: rgba(255, 255, 255, 1);
+  box-sizing: border-box;
+  top: 8.875rem; /* 142px converted to rem */
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0rem 3.125rem 6.25rem -1.25rem rgba(50, 50, 93, 0.25); /* 0px 50px 100px -20px converted to rem */
+}
+
+.divider {
+  position: relative;
+  width: 43.125rem; /* 690px converted to rem */
+  height: 0.0625rem; /* 1px converted to rem */
+  background-color: rgba(242, 244, 248, 1);
+  margin: 0 auto;
+  top: 8.84375rem; /* 141.5px converted to rem */
+  opacity: 1;
+  box-shadow: 0rem 1.875rem 3.75rem -1.875rem rgba(0, 0, 0, 0.25); /* 0px 30px 60px -30px converted to rem */
+}
+
+.no-results-icon {
+  width: 15.4375rem; /* 247px converted to rem */
+  height: 12.5rem; /* 200px converted to rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.4rem;
+  margin-top: 0.6rem;
+}
+
+.no-results-icon svg {
+  position: relative;
+  left: 12.5rem; /* 200px converted to rem */
+  top: 6.875rem; /* 110px converted to rem */
+}
+
+.time-icon-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Aligns time to the left and icon to the right */
+  align-items: center; /* Vertically center the items */
+  width: 86.25rem; /* 1380px converted to rem */
+  padding-bottom: 2.5rem; /* 40px converted to rem */
+  position: absolute;
+  bottom: 0.625rem; /* 10px converted to rem */
+  left: 0;
+  background-color: rgba(237, 242, 247, 1); /* Background color for better visibility */
+}
+
+.timeShow {
+  position: relative;
+  font-size: 1rem; /* Adjust the font size for the time */
+  color: #666; /* Color for the time text */
+  margin-left: 0.75rem; /* 12px converted to rem */
+  left: 2.5rem; /* 40px converted to rem */
+}
+
+.DCicon {
+  position: relative;
+  width: 5.125rem; /* 82px converted to rem */
+  height: 2.7675rem; /* 44.28px converted to rem */
+  top: 52.5625rem; /* 841px converted to rem */
+  left: 81.75rem; /* 1308px converted to rem */
+}
+
+.searching-reseults-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  z-index: 1; /* Ensures it appears above other content but doesn't block interactions */
+}
+
+.searching-reseults-icon svg {
+  margin-top: 24.375rem; /* 390px converted to rem */
+  margin-bottom: 18.75rem; /* 300px converted to rem */
+}
+
+/* Ensure input fields and tags are not covered */
+.main-container,
+.search-bar-container,
+.tags-container {
+  position: relative;
+  z-index: 2; /* Higher than the searching icon */
+}
+
+.loading-icon svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 50%; 
+  top: 15.625rem; /* 250px converted to rem */
+  left: 50%;
+  transform: translate(-70%, -70%); /* Adjust for the icon's width and height */
+  width: 10.625rem; /* 170px converted to rem */
+  height: 10.625rem; /* 170px converted to rem */
+  border-radius: 0.75rem; /* 12px converted to rem */
+  opacity: 1;
+  z-index: 999; /* Ensure it appears above other content */
+  animation: rotate 0.5s linear infinite; /* Add rotation animation */
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  
-  .main-container {
-    display: flex;
-    position: relative;
-    padding-bottom: 3rem;
-    flex-direction: column;
-    height: 23rem; 
-    width: 28rem;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-    transition: height 0.3s ease; 
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
-  
-  .main-container.reduced-height {
-    height: 16rem; 
-  }
-  
-  .footer-message {
-    border-radius: 0rem 0rem 1rem 1rem;
-    height: 1rem;
-    width: 30rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 0.5rem 1rem;
-    padding-bottom: 1.5rem;
-    font-size: 0.8rem;
-    color: #999;
-    background-color: #FFFFFF;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-  }
-  
-  .searching-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1.4rem;
-    margin-top: 0.6rem;
-  }
-  
-  .no-results-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1.4rem;
-    margin-top: 0.6rem;
-  }
-  
-  .footer-message p {
-    font-size: 0.8rem;
-    color: #333;
-    margin-top: 2rem;
-  }
-  
-  .timeShow {
-    margin-top: 32rem;
-    margin-left: -4.1rem;
-    text-align: right;
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .loading-icon {
-    animation: rotate 1s linear infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
+}

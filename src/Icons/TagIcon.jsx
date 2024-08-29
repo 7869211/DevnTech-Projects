@@ -3,8 +3,17 @@ import React from 'react';
 const TagIcon = () => (
   <svg
     className="tag-icon-class"
-    width="1rem"
-    height="1rem"
+    width= "20px"
+    height="20px"
+    top="1.25px"
+    left= "8.32px"
+    gap= "0px"
+    border="1.5px 0px 0px 0px"
+    opacity="0px"
+    angle="-45 deg"
+
+    clip-path="url(#clip0_i_1578_1775)"
+    fill="currentColor"
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +25,10 @@ const TagIcon = () => (
     />
     <circle
       className='ellipse-circle'
+      width="1.25px"
+    height="1.25px"
+    top="7.85px"
+    left="8.21px"
       cx="5.735"
       cy="6.272"
       r="1"

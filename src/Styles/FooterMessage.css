@@ -1,0 +1,32 @@
+.footer-message {
+  position: absolute;
+  width: 43.125rem; /* 690px converted to rem */
+  height: 3.1875rem; /* 51px converted to rem */
+  bottom: 8.8125rem; /* 141px converted to rem */
+  left: 50%; 
+  transform: translateX(-50%); 
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem; /* 10px converted to rem */
+  border-radius: 0 0 1.25rem 1.25rem; /* 20px converted to rem */
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 999;
+}
+
+.footer-message p {
+  display: flex;
+  position: relative;
+  width: 27.8125rem; /* 445px converted to rem */
+  height: 1.25rem; /* 20px converted to rem */
+  top: 0.9375rem; /* 15px converted to rem */
+  left: 1.5rem; /* 24px converted to rem */
+  opacity: 1; 
+  font-family: Poppins, sans-serif;
+  font-size: 1rem; /* 16px converted to rem */
+  font-weight: 500;
+  line-height: 1.25rem; /* 20px converted to rem */
+  text-align: left;
+  color: rgba(153, 159, 170, 1);
+  margin-top: 0.125rem; /* 2px converted to rem */
+}

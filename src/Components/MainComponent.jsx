@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SearchBar from './SearchBar';
 import ResultItems from './ResultItems';
-import LoadingIcon from '../Icons/LoadingIcon';  
+import LoadingIcon from '../Icons/LoadingIcon';
 import TagComponent from './TagComponent';
 import '../Styles/Main.css';
 import NoResultsIcon from '../Icons/NoResultsIcon';
 import SearchingResults from '../Icons/SearchingResults';
 import TimeShow from '../Components/TimeShow';
+import DCicon from '../Icons/DCicon';
+import FooterMessage from '../Components/FooterMessge';
 
 function MainComponent() {
   const [results, setResults] = useState([]);
@@ -35,10 +37,9 @@ function MainComponent() {
   }, []);
 
   const fetchResults = useCallback(async (term) => {
-    // Abort controller
     const abortcontroller = new AbortController();
     const { signal } = abortcontroller;
-    setAbortController(abortcontroller); 
+    setAbortController(abortcontroller);
 
     if (term.trim() === '') {
       setResults([]);
@@ -48,23 +49,23 @@ function MainComponent() {
       setError(false);
       return;
     }
-  
+
     setLoading(true);
     setNoResults(false);
     setError(false);
     setSearching(false);
-  
+
     try {
       const response = await fetch(
         `https://frontend-test-api.digitalcreative.cn/?no-throttling=false&search=${term}`,
         { signal }
       );
-  
+
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
       const data = await response.json();
-  
+
       if (Array.isArray(data) && data.length === 0) {
         setResults([]);
         setNoResults(true);
@@ -101,7 +102,7 @@ function MainComponent() {
 
   useEffect(() => {
     if (abortController) {
-      abortController.abort(); 
+      abortController.abort();
     }
     setResults([]);
     debounceFetchResults(searchTerm);
@@ -111,11 +112,23 @@ function MainComponent() {
     setSearchTerm(tagText);
   };
 
-  const containerClassName = results.length > 2 ? 'main-container' : 'main-container reduced-height';
+  let footerMessage = '';
+  if (loading) {
+    footerMessage = 'Searching...';
+  } else if (isError) {
+    footerMessage = 'Something went wrong, but it’s not your fault :).';
+  } else if (noResults) {
+    footerMessage = 'No Results';
+  } else if (results.length > 0) {
+    footerMessage = `${results.length} results`;
+  }
+  else if(searching){
+    footerMessage = 'no results';
+  }
 
   return (
     <div className="main">
-      <div className={containerClassName}>
+      <div className="main-container">
         <div className="search-bar-container">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} isError={isError} />
           <div className="tags-container">
@@ -127,44 +140,34 @@ function MainComponent() {
 
         {loading && (
           <div className="loading-icon">
-            <LoadingIcon className="loading-icon" />
-          </div>
-        )}
-
-        {noResults && !loading && (
-          <div className="no-results-container">
-            <NoResultsIcon />
-            <div className="footer-message">
-              <p>No Results</p>
-            </div>
-          </div>
-        )}
-
-        {!loading && results.length > 0 && (
-          <div className="footer-message">
-            <p>{results.length} results </p>
-          </div>
-        )}
-
-        {loading && (
-          <div className="footer-message">
-            <p>Searching...</p>
+            <LoadingIcon/>
           </div>
         )}
 
         {searching && (
-          <div className="searching-icon">
+          <div className="searching-reseults-icon">
             <SearchingResults />
-            <div className="footer-message">
-              <p>no results</p>
-            </div>
           </div>
         )}
 
-        <ResultItems results={results} />
+        {noResults && (
+          <div className="no-results-icon">
+            <NoResultsIcon />
+          </div>
+        )}
+
+
+        {!loading && results.length > 0 && <ResultItems results={results} />}
       </div>
 
-      <TimeShow time={showTime} />
+      <div className="divider"></div>
+
+      <div className="time-icon-container">
+        <TimeShow time={showTime} />
+        <DCicon />
+      </div>
+
+      <FooterMessage message={footerMessage} />
     </div>
   );
 }
