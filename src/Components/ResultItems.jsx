@@ -10,7 +10,6 @@ const ResultItems = ({ results }) => {
   };
 
   return (
-    <>
     <div className="result-items">
       {results.length > 0 ? (
         results.map((item, index) => (
@@ -39,7 +38,6 @@ const ResultItems = ({ results }) => {
         <p className="no-results-message">No results found</p> 
       )}
     </div>
-    </>
   );
 };
 

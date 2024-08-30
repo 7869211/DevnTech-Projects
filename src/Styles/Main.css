@@ -1,9 +1,12 @@
+/* Main.css */
+
+/* Base Styles */
 .main {
   width: 90rem; /* 1440px converted to rem */
   height: 58.4375rem; /* 935px converted to rem */
-  position: relative; /* Ensure that child elements like footer and divider are positioned relative to this container */
+  position: relative;
   background-color: rgba(237, 242, 247, 1);
-  margin: 0 auto; /* Center the main container within the viewport */
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -51,22 +54,21 @@
 }
 
 .time-icon-container {
-  position: relative;
   display: flex;
-  justify-content: space-between; /* Aligns time to the left and icon to the right */
-  align-items: center; /* Vertically center the items */
+  justify-content: space-between;
+  align-items: center;
   width: 86.25rem; /* 1380px converted to rem */
   padding-bottom: 2.5rem; /* 40px converted to rem */
   position: absolute;
   bottom: 0.625rem; /* 10px converted to rem */
   left: 0;
-  background-color: rgba(237, 242, 247, 1); /* Background color for better visibility */
+  background-color: rgba(237, 242, 247, 1);
 }
 
 .timeShow {
   position: relative;
-  font-size: 1rem; /* Adjust the font size for the time */
-  color: #666; /* Color for the time text */
+  font-size: 1rem;
+  color: #666;
   margin-left: 0.75rem; /* 12px converted to rem */
   left: 2.5rem; /* 40px converted to rem */
 }
@@ -89,7 +91,7 @@
   transform: translate(-50%, -50%);
   width: auto;
   height: auto;
-  z-index: 1; /* Ensures it appears above other content but doesn't block interactions */
+  z-index: 1;
 }
 
 .searching-reseults-icon svg {
@@ -97,12 +99,11 @@
   margin-bottom: 18.75rem; /* 300px converted to rem */
 }
 
-/* Ensure input fields and tags are not covered */
 .main-container,
 .search-bar-container,
 .tags-container {
   position: relative;
-  z-index: 2; /* Higher than the searching icon */
+  z-index: 2;
 }
 
 .loading-icon svg {
@@ -113,20 +114,175 @@
   bottom: 50%; 
   top: 15.625rem; /* 250px converted to rem */
   left: 50%;
-  transform: translate(-70%, -70%); /* Adjust for the icon's width and height */
+  transform: translate(-70%, -70%);
   width: 10.625rem; /* 170px converted to rem */
   height: 10.625rem; /* 170px converted to rem */
   border-radius: 0.75rem; /* 12px converted to rem */
   opacity: 1;
-  z-index: 999; /* Ensure it appears above other content */
-  animation: rotate 0.5s linear infinite; /* Add rotation animation */
+  z-index: 999;
+  animation: rotate 0.5s linear infinite;
 }
 
+/* Keyframes */
 @keyframes rotate {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
   to {
     transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Responsive Styles for Main.css */
+@media (max-width: 1024px) {
+  .main {
+    width: 80%; /* Slightly reduce width */
+    height: 100vh; /* Allow height to adjust */
+  }
+
+  .main-container {
+    width: 80%; /* Adjust container width */
+    height: auto; /* Allow height to adjust */
+    top: 5rem; /* Adjust top spacing */
+  }
+
+  .divider {
+    width: 80%; /* Adjust width */
+    top: 7rem; /* Adjust top spacing */
+  }
+
+  .time-icon-container {
+    width: 80%; /* Adjust width */
+  }
+
+  .DCicon {
+    top: auto; /* Adjusted position */
+    left: auto; /* Adjusted position */
+    right: auto; /* Adjusted position */
+    transform: translateX(0); /* Remove translation */
+  }
+
+  .searching-reseults-icon svg {
+    margin-top: 4rem; /* Adjust margin */
+    margin-bottom: 4rem; /* Adjust margin */
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    width: 100%; /* Full width for smaller screens */
+    height: 100vh; /* Full viewport height */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+
+  .main-container {
+    width: 90%; /* Reduce width for smaller screens */
+    height: 33.5rem; /* Maintain height similar to full-screen but adjust based on content */
+    padding: 1rem 0 0 0; /* Adjust padding */
+    margin: 0 auto;
+    top: 7rem; /* Adjust top position */
+  }
+
+  .divider {
+    width: 90%; /* Adjust width */
+    top: 6.5rem; /* Adjust top spacing */
+  }
+
+  .time-icon-container {
+    width: 90%; /* Adjust width */
+    flex-direction: column; /* Stack items vertically */
+    padding-bottom: 1.25rem; /* Adjust padding */
+  }
+
+  .timeShow {
+    left: 0; /* Adjust left position */
+    margin-left: 0; /* Remove margin */
+  }
+
+  .DCicon {
+    width: 4.5rem; /* Adjust icon size */
+    left: 50%; /* Center the icon */
+    transform: translateX(-50%); /* Center the icon */
+    top: auto; /* Adjust top position */
+  }
+
+  .loading-icon svg {
+    width: 6.5rem; /* Adjust icon size */
+    height: 6.5rem; /* Adjust icon size */
+  }
+
+  .no-results-icon svg {
+    left: 70%; /* Center the icon */
+    transform: translateX(-30%); /* Center the icon */
+    top: 50%; /* Adjust top position */
+  }
+
+  .searching-reseults-icon svg {
+    margin-top: 15.5rem; /* Adjust margin */
+    margin-bottom: 5.5rem; /* Adjust margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    width: 100%; /* Full width for mobile */
+    height: 100vh; /* Full viewport height */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .main-container {
+    width: 100%; /* Full width for mobile */
+    height: auto; /* Allow height to adjust based on content */
+    padding: 0.75rem 0 0 0; /* Adjust padding */
+    top: 6rem; /* Adjust top position */
+  }
+
+  .divider {
+    width: 100%; /* Full width */
+    top: 5.5rem; /* Adjust top spacing */
+  }
+
+  .no-results-icon {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    padding: 0.75rem; /* Adjust padding */
+  }
+
+  .no-results-icon svg {
+    left: 50%; /* Center the icon */
+    transform: translateX(-50%); /* Center the icon */
+    top: auto; /* Adjust top position */
+  }
+
+  .time-icon-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+    padding-bottom: 0.75rem; /* Adjust padding */
+  }
+
+  .timeShow {
+    font-size: 0.875rem; /* Adjust font size */
+  }
+
+  .DCicon {
+    width: 3.75rem; /* Smaller icon size */
+    left: 50%; /* Center the icon */
+    transform: translateX(-50%); /* Center the icon */
+    top: auto; /* Adjust top position */
+  }
+
+  .searching-reseults-icon svg {
+    margin-top: 5.5rem; /* Adjust margin */
+    margin-bottom: 5.5rem; /* Adjust margin */
+  }
+
+  .loading-icon svg {
+    width: 4.5rem; /* Adjust icon size */
+    height: 4.5rem; /* Adjust icon size */
   }
 }

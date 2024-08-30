@@ -103,6 +103,7 @@ function MainComponent() {
   useEffect(() => {
     if (abortController) {
       abortController.abort();
+      console.log("aborted");
     }
     setResults([]);
     debounceFetchResults(searchTerm);
@@ -116,7 +117,7 @@ function MainComponent() {
   if (loading) {
     footerMessage = 'Searching...';
   } else if (isError) {
-    footerMessage = 'Something went wrong, but it’s not your fault :).';
+    footerMessage = 'no results.';
   } else if (noResults) {
     footerMessage = 'No Results';
   } else if (results.length > 0) {

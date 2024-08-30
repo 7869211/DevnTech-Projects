@@ -1,32 +1,84 @@
+/* Base Styles */
 .footer-message {
   position: absolute;
   width: 43.125rem; /* 690px converted to rem */
   height: 3.1875rem; /* 51px converted to rem */
-  bottom: 8.8125rem; /* 141px converted to rem */
+  bottom: 8.84rem; /* 141px converted to rem */
   left: 50%; 
   transform: translateX(-50%); 
   display: flex;
   flex-direction: row;
   gap: 0.625rem; /* 10px converted to rem */
   border-radius: 0 0 1.25rem 1.25rem; /* 20px converted to rem */
-  opacity: 1;
   background-color: rgba(255, 255, 255, 1);
   z-index: 999;
+  box-shadow: 0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
 }
 
 .footer-message p {
-  display: flex;
   position: relative;
+  top: 0.9rem;
+  left: 1.4rem;
   width: 27.8125rem; /* 445px converted to rem */
   height: 1.25rem; /* 20px converted to rem */
-  top: 0.9375rem; /* 15px converted to rem */
-  left: 1.5rem; /* 24px converted to rem */
-  opacity: 1; 
   font-family: Poppins, sans-serif;
   font-size: 1rem; /* 16px converted to rem */
   font-weight: 500;
   line-height: 1.25rem; /* 20px converted to rem */
-  text-align: left;
   color: rgba(153, 159, 170, 1);
-  margin-top: 0.125rem; /* 2px converted to rem */
+  margin: 0;
+}
+
+/* Responsive Styles for Footer.css */
+@media (max-width: 768px) {
+  .footer-message {
+    padding: 0.5rem 1rem; /* Adjust padding */
+    flex-direction: row; /* Maintain row layout */
+    justify-content: space-between; /* Distribute space between elements */
+    position: absolute; /* Keep it at the bottom of the main container */
+    bottom: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%); /* Center the footer */
+    width: 90%; /* Ensure the width stays within the main container */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    background-color: rgba(255, 255, 255, 1); /* Keep the background consistent */
+    border-top: 1px solid rgba(242, 244, 248, 1); /* Optional: Add a top border for separation */
+  }
+  .footer-message p {
+    width: 80%; /* Adjust text width */
+    font-size: 0.875rem; /* Adjust font size */
+    line-height: 1.125rem; /* Adjust line-height */
+  }
+
+  /* Prevent overlap */
+  body {
+    padding-bottom: 3.5rem; /* Adjust padding at the bottom */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-message {
+    padding: 0.5rem 0.75rem; /* Adjust padding */
+    flex-direction: row; /* Maintain row layout */
+    justify-content: space-between; /* Distribute space between elements */
+    position: absolute; /* Keep it at the bottom of the main container */
+    bottom: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%); /* Center the footer */
+    width: 95%; /* Ensure the width stays within the main container */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    background-color: rgba(255, 255, 255, 1); /* Keep the background consistent */
+    border-top: 1px solid rgba(242, 244, 248, 1); /* Optional: Add a top border for separation */
+  }
+
+
+  .footer-message p {
+    font-size: 0.75rem; /* Adjust font size */
+    line-height: 1rem; /* Adjust line-height */
+  }
+
+  /* Prevent overlap */
+  body {
+    padding-bottom: 3.5rem; /* Adjust padding at the bottom */
+  }
 }
