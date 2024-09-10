@@ -1,3 +1,4 @@
+/* General styling for the section */
 .posts-section {
   padding: 40px 20px;
   background-color: #111827;
@@ -18,21 +19,22 @@
 
 .header h2 {
   font-size: 36px;
-  color: #34d399;
+  color: #34d399; /* Updated to match your color */
   font-weight: bold;
+  margin-top: -1rem;
 }
 
 /* Grid layout for post cards */
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
   gap: 20px;
   padding: 30px;
 }
 
 /* Card styling */
 .post-card {
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background for the card */
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -40,16 +42,17 @@
   justify-content: space-between;
   height: 400px; /* Fixed height */
   position: relative; /* To position dropdown menu */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Slight shadow on hover */
 }
 
 /* Title section */
 .post-title-container {
-  background-color: #34d399;
+  background-color: #34d399; /* Updated title background color */
   padding: 15px;
   display: flex;
   justify-content: space-between; /* Space between title and 3 dots */
@@ -58,7 +61,7 @@
 
 .post-title {
   font-size: 24px;
-  color: #ffffff;
+  color: #ffffff; /* White text */
   font-weight: bold;
   text-decoration: none;
   display: block;
@@ -66,14 +69,14 @@
 }
 
 .post-title:hover {
-  color: #bbf7d0;
+  color: #bbf7d0; /* Lighter green on hover */
 }
 
 /* 3 dots for dropdown menu */
 .three-dots {
   cursor: pointer;
   font-size: 30px;
-  color: #000000;
+  color: #000000; /* Black for dots */
 }
 
 /* Dropdown menu */
@@ -85,7 +88,7 @@
   position: absolute;
   top: 35px;
   right: 10px;
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background for the dropdown */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   overflow: hidden;
@@ -95,18 +98,18 @@
 .dropdown-item {
   display: block;
   padding: 10px 20px;
-  color: #111827;
+  color: #111827; /* Dark text */
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #f1f5f9;
+  background-color: #f1f5f9; /* Light background on hover */
 }
 
 /* Scrollable content section */
 .post-content {
-  background-color: #f9fafb;
+  background-color: #f9fafb; /* Light background */
   padding: 20px;
   flex-grow: 1;
   overflow-y: auto;
@@ -114,30 +117,83 @@
 
 .post-description {
   font-size: 16px;
-  color: #6b7280;
+  color: #6b7280; /* Gray text for description */
   margin-bottom: 15px;
 }
 
 /* Footer section */
 .post-footer {
-  background-color: #111827;
+  background-color: #111827; /* Dark background */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
-  border-top: 1px solid #e5e7eb;
+  color: #ffffff; /* White text */
+  border-top: 1px solid #e5e7eb; /* Light border */
   flex-shrink: 0;
 }
 
 .post-author {
   font-size: 14px;
-  color: #fbbf24;
+  color: #fbbf24; /* Amber color for the author */
   font-weight: bold;
 }
 
 .post-date {
   font-size: 14px;
   font-style: italic;
-  color: #9ca3af;
+  color: #9ca3af; /* Light gray for the date */
+}
+
+/* No posts found message */
+.no-posts {
+  grid-column: span 3;
+  text-align: center;
+  font-size: 24px;
+  color: #888;
+}
+
+/* Responsive design */
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+
+  .post-title {
+    font-size: 18px; /* Smaller font for medium screens */
+  }
+
+  .post-description {
+    font-size: 14px; /* Adjust description font */
+  }
+}
+
+/* Small screens (mobile phones) */
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .header h2 {
+    font-size: 28px; /* Adjust header size on small screens */
+  }
+
+  .post-title {
+    font-size: 16px; /* Smaller title font */
+  }
+
+  .post-description {
+    font-size: 12px; /* Adjust description font size */
+  }
+
+  .post-footer {
+    flex-direction: column;
+    align-items: flex-start; /* Stack author and date vertically */
+  }
+
+  .post-author, .post-date {
+    font-size: 12px; /* Adjust author and date font size */
+  }
 }

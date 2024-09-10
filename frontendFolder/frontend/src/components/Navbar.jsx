@@ -67,31 +67,30 @@ const Navbar = () => {
             <Link to="/draftposts" className="navbar-link" onClick={toggleMobileMenu}>
               Drafts
             </Link>
-          </>
-        )}
-      </nav>
-
-      <div className="navbar-buttons desktop-buttons">
-        {isAuthenticated ? (
-          <>
-            <Link to="/createpost" className="navbarpost-button">
+            <Link to="/createpost" className="navbar-link" onClick={toggleMobileMenu}>
               +New Post
             </Link>
-            <button onClick={handleSignOut} className="navbarsignin-button">
+            <Link
+              to="/" 
+              className="navbar-link" 
+              onClick={() => { handleSignOut(); toggleMobileMenu(); }}
+            >
               Sign Out
-            </button>
+            </Link>
           </>
-        ) : (
+        )}
+
+        {!isAuthenticated && (
           <>
             <Link to="/signup" className="navbar-link" onClick={toggleMobileMenu}>
               Sign Up
             </Link>
-            <Link to="/signin" className="navbarsignin-button">
+            <Link to="/signin" className="navbar-link" onClick={toggleMobileMenu}>
               Sign In
             </Link>
           </>
         )}
-      </div>
+      </nav>
     </header>
   );
 };

@@ -52,7 +52,7 @@ export default function MyPosts() {
       });
 
       if (response.status === 200) {
-        // Remove frontend
+        // Remove from frontend
         setPosts(posts.filter((post) => post.id !== postId));
         alert("Post deleted successfully");
       }
