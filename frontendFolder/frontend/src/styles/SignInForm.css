@@ -1,0 +1,70 @@
+.signin-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 50px;
+    background-color: #111827; /* Muted blue background */
+}
+.signin-form {
+  flex-basis: 50%; /* The form takes 50% of the width */
+  max-width: 400px; /* Max width to keep the form size consistent */
+  padding: 20px;
+  background-color: #333; /* Dark gray background */  color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  height: 20rem;
+  margin-left: 8rem;
+  margin-top: 0.5rem;
+  
+}
+
+.signin-heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.signin-button {
+  width: 100%;
+  padding: 15px; 
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 150px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.signin-image {
+  flex-basis: 50%; /* Image takes 50% of the width */
+  display: flex;
+  justify-content: flex-end; /* Align the image to the right */
+  padding-left: 20px; /* Add space between form and image */
+}
+
+.signin-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 100%; /* Ensure the image doesn't overflow */
+}

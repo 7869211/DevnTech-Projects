@@ -1,0 +1,155 @@
+/* Navbar container styles */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #2e2727;
+  box-shadow: 0 4px 6px rgba(19, 19, 19, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+/* Navbar logo styling */
+.navbar-logo h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  color: white;
+  margin: 0;
+}
+
+/* Navbar links container */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  margin-left: 50px;
+}
+
+/* Navbar link styling */
+.navbar-link {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: rgb(165, 201, 201);
+  text-decoration: none;
+  transition: color 0.1s;
+}
+
+.navbar-link:hover {
+  color: #007bff;
+}
+
+/* Navbar buttons */
+.navbar-buttons {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.navbarpost-button,
+.navbarsignin-button {
+  padding: 10px 20px;
+  background-color: #3078c5;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.navbarsignin-button {
+  background-color: #007bff;
+}
+
+.navbarpost-button:hover,
+.navbarsignin-button:hover {
+  background-color: #5507e8;
+}
+
+/* Hamburger Menu Icon */
+.navbar-menu-icon {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.navbar-menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Transform the hamburger icon when clicked */
+.navbar-menu-icon .change {
+  background-color: #5507e8;
+}
+/* Add styling for the active link */
+.navbar-link.active {
+  color: #007bff; /* Blue color for the active link */
+}
+
+/* Navbar links should change color on hover but not override the active link */
+.navbar-link:hover:not(.active) {
+  color: #007bff;
+}
+
+
+
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  /* Adjust navbar container */
+  .navbar-container {
+    padding: 10px 20px;
+  }
+
+  /* Hide desktop links and buttons */
+  .navbar-links,
+  .desktop-buttons {
+    display: none;
+  }
+
+  /* Show hamburger menu */
+  .navbar-menu-icon {
+    display: flex;
+  }
+
+  /* Mobile navigation menu */
+  .navbar-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust based on navbar height */
+    left: 0;
+    width: 100%;
+    background-color: #2e2727;
+    padding-bottom: 10px;
+  }
+
+  .navbar-links.active .navbar-link {
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+    color: white;
+  }
+
+  .navbar-links.active .navbar-link:hover {
+    background-color: #3c3c3c;
+  }
+
+  /* Show mobile buttons inside the dropdown */
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .mobile-buttons .navbarpost-button,
+  .mobile-buttons .navbarsignin-button {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,143 @@
+.posts-section {
+  padding: 40px 20px;
+  background-color: #111827;
+}
+
+/* Container for the post cards */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header styling */
+.header {
+  text-align: left;
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 36px;
+  color: #34d399;
+  font-weight: bold;
+}
+
+/* Grid layout for post cards */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+/* Card styling */
+.post-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px; /* Fixed height */
+  position: relative; /* To position dropdown menu */
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Title section */
+.post-title-container {
+  background-color: #34d399;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between; /* Space between title and 3 dots */
+  align-items: center;
+}
+
+.post-title {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.post-title:hover {
+  color: #bbf7d0;
+}
+
+/* 3 dots for dropdown menu */
+.three-dots {
+  cursor: pointer;
+  font-size: 30px;
+  color: #000000;
+}
+
+/* Dropdown menu */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: #111827;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9;
+}
+
+/* Scrollable content section */
+.post-content {
+  background-color: #f9fafb;
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.post-description {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+/* Footer section */
+.post-footer {
+  background-color: #111827;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+.post-date {
+  font-size: 14px;
+  font-style: italic;
+  color: #9ca3af;
+}

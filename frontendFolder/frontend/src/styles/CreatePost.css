@@ -1,0 +1,138 @@
+/* Container to center the form with equal margins from all sides */
+.create-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #111827; 
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Form Box (like a card) */
+.create-post-box {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+/* Title */
+.create-post-box h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #0d9488; /* A dark teal color */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Success Message */
+.success-msg {
+  color: #38a169; /* Green-500 */
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Error Message */
+.error-msg {
+  color: #e3342f; /* Red */
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Title Section (card-like with distinct color) */
+.title-group {
+  background-color: #f0fdf4; /* Light green background */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Description Section (card-like with distinct color) */
+.description-group {
+  background-color: #eef2ff; /* Light blue background */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Text Editor Input (Title) */
+.text-editor-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  background-color: transparent; /* Background blends with container */
+  color: #374151; /* Gray-700 */
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Text Editor Textarea (Content) */
+.text-editor-area {
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  border: none;
+  background-color: transparent; /* Background blends with container */
+  color: #374151; /* Gray-700 */
+  transition: border-color 0.3s;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Button Group - To align both buttons side by side */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button Styling */
+.btn {
+  flex: 1; /* Both buttons take up equal space */
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+/* Create Post Button */
+.btn-create {
+  background-color: #34d399; /* Green-600 */
+}
+
+.btn-create:hover {
+  background-color: #059669; /* Darker green on hover */
+}
+
+/* Draft Button */
+.btn-draft {
+  background-color: #3b82f6; /* Blue-500 */
+}
+
+.btn-draft:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+/* Disabled Button */
+.btn:disabled {
+  background-color: #d1d5db; /* Gray when disabled */
+  cursor: not-allowed;
+}

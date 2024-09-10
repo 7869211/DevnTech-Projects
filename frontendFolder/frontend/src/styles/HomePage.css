@@ -1,0 +1,151 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+.homepage-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #111827; /* Dark navy background similar to the image */
+  color: white;
+  overflow: hidden;
+}
+
+/* Header styles */
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo h1 {
+  color: white;
+  font-size: 24px;
+}
+
+.auth-buttons {
+  display: flex;
+}
+
+.auth-button {
+  background-color: #2563eb; /* Blue color */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #1e40af; /* Darker blue for hover */
+}
+
+/* Main section styles */
+.main-section {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.text-container {
+  max-width: 50%;
+  line-height: 1.5;
+}
+
+.welcome-text {
+  font-size: 24px;
+  color: #3b82f6; /* Lighter blue */
+  font-weight: bold;
+}
+
+.headline {
+  font-size: 3.5rem; /* Adjust to fit the screen */
+  font-weight: bold;
+  color: white;
+  margin: 20px 0;
+}
+
+.highlight {
+  color: #facc15; /* Bright yellow similar to image */
+}
+
+.subtext {
+  font-size: 1.2rem;
+  color: #9ca3af; /* Light gray for readability */
+  margin-bottom: 20px;
+}
+
+.explore-button {
+  background-color: #3b82f6; /* Matching blue color */
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+/* Image container and styles */
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.poster-image {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+  opacity: 1; /* Adjust this value to make the image transparent (0.5 = 50% transparency) */
+  transition: opacity 0.3s ease; /* Optional: smooth transition effect */
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .text-container {
+    max-width: 100%;
+  }
+
+  .poster-image {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .headline {
+    font-size: 2.5rem;
+  }
+}

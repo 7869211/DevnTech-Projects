@@ -1,0 +1,102 @@
+/* Container to center the form with equal margins from all sides */
+.edit-post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #111827;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Form Box (like a card) */
+  .edit-post-container h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #0d9488; /* Dark teal color */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form Group */
+  .form-group {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #f9fafb; /* Light background for form sections */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Label */
+  .form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #374151; /* Gray color */
+    margin-bottom: 8px;
+  }
+  
+  /* Input Field (Title) */
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #0d9488; /* Dark teal border on focus */
+    outline: none;
+  }
+  
+  /* Textarea (Content) */
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    resize: vertical;
+  }
+  
+  .form-group textarea:focus {
+    border-color: #0d9488; /* Dark teal border on focus */
+    outline: none;
+  }
+  
+  /* Button */
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #34d399; /* Green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  button:hover {
+    background-color: #059669; /* Darker green on hover */
+  }
+  
+  /* Error Message */
+  .error-msg {
+    color: #e3342f; /* Red */
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  

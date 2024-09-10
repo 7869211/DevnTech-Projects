@@ -1,0 +1,13 @@
+.footer-container {
+    padding: 20px;
+    background-color: #2e2727    ; /* Adjust color based on image */
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Adjust font based on image */
+    font-size: 14px;
+    color: #f8f4f4; /* Adjust color based on image */
+  }
+  
+  .footer-container p {
+    margin: 0;
+  }
+  
