@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const { createUser, findUserByEmail } = require('../models/userModel');
-const generateToken = require('../utils/tokenUtils'); // Import the token generation utility
+const generateToken = require('../utils/tokenUtils');
 
 // Sign-up logic
 const signUp = async (req, res) => {
@@ -10,29 +10,38 @@ const signUp = async (req, res) => {
         return res.status(400).json({ message: 'Password is required' });
     }
 
-    const existingUser = await findUserByEmail(email);
-    if (!existingUser) {
+    try {
+        const existingUser = await findUserByEmail(email);
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await createUser(name, email, hashedPassword);
 
-        if (newUser) {
-            const token = generateToken(newUser); // Generate JWT token
-            res.status(201).json({
-                message: 'User created successfully',
-                user: newUser,
-                token, // Include the token in the response
-            });
-        } else {
+        if (!newUser) {
             return res.status(500).json({ message: 'User creation failed' });
         }
-    } else {
-        return res.status(400).json({ message: 'User already exists' });
+
+        const token = generateToken(newUser); // Generate JWT token
+        return res.status(201).json({
+            message: 'User created successfully',
+            user: { id: newUser.id, name: newUser.name, email: newUser.email },
+            token, // Include the token in the response
+        });
+    } catch (error) {
+        console.error('Error during sign-up:', error.message);
+        return res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
 // Sign-in logic
 const signIn = async (req, res) => {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
+    }
 
     try {
         const user = await findUserByEmail(email);
@@ -45,19 +54,15 @@ const signIn = async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-        const token = generateToken(user); 
+        const token = generateToken(user);
 
         return res.json({
-            token, 
-            user: {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-            },
+            token, // Include the token in the response
+            user: { id: user.id, name: user.name, email: user.email }, 
         });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Error during sign-in:', error.message);
+        return res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 

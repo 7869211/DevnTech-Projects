@@ -10,33 +10,33 @@ const createPost = async (title, content, authorId, status = 'draft') => {
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0];
+        return rows[0]; // Return the newly created post
     } catch (err) {
-        console.error('Error executing query:', err.message);
-        throw err;
+        console.error('Error creating post:', err.message);
+        throw err; 
     }
 };
 
 const getAllPosts = async () => {
-    const query = `SELECT * FROM posts`;
+    const query = 'SELECT * FROM posts ORDER BY created_at DESC';
 
     try {
         const { rows } = await pool.query(query);
-        return rows;
+        return rows; // Return all posts
     } catch (err) {
-        console.error('Error executing query:', err.message);
+        console.error('Error fetching posts:', err.message);
         throw err;
     }
 };
 
 const getPostById = async (id) => {
-    const query = `SELECT * FROM posts WHERE id = $1`;
+    const query = 'SELECT * FROM posts WHERE id = $1';
 
     try {
         const { rows } = await pool.query(query, [id]);
-        return rows[0];
+        return rows[0]; // Return the post found by ID
     } catch (err) {
-        console.error('Error executing query:', err.message);
+        console.error('Error fetching post by ID:', err.message);
         throw err;
     }
 };
@@ -52,9 +52,9 @@ const updatePost = async (id, title, content, authorId, status) => {
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0];
+        return rows[0]; // Return the updated post
     } catch (err) {
-        console.error('Error executing query:', err.message);
+        console.error('Error updating post:', err.message);
         throw err;
     }
 };
@@ -69,9 +69,9 @@ const deletePost = async (id, authorId) => {
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0];
+        return rows[0]; // Return the deleted post
     } catch (err) {
-        console.error('Error executing query:', err.message);
+        console.error('Error deleting post:', err.message);
         throw err;
     }
 };
