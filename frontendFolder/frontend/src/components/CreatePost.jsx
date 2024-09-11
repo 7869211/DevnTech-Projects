@@ -51,10 +51,8 @@ export default function CreatePost() {
       navigate(draft ? '/draftposts' : '/myposts');
     } catch (err) {
       if (err.response) {
-        console.error("Error creating post:", err.response.data);
         setError(err.response.data.message || "Failed to create post. Please try again.");
       } else {
-        console.error("Error creating post:", err);
         setError("An unexpected error occurred. Please try again.");
       }
     } finally {
