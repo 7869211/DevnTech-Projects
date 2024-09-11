@@ -24,13 +24,17 @@ const SignInForm = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Store token and authentication status in localStorage
         localStorage.setItem("token", data.token); 
         localStorage.setItem("isAuthenticated", "true"); 
+        
         alert("Congratulations, you have successfully signed in!");
 
-        window.location.reload();
+        // Navigate to "published posts"
+        navigate('/publishedposts');
 
-        navigate('/publishedposts'); 
+        // Force a page reload to update the authenticated user links
+        window.location.reload(); 
       } else {
         setErrorMessage(data.message || "Sign In failed");
       }
