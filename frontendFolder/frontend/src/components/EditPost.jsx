@@ -59,7 +59,7 @@ export default function EditPost() {
     };
 
     fetchPost();
-  }, [id, getToken]);
+  }, []);
 
   const handleUpdatePost = async () => {
     const token = getToken();
@@ -119,18 +119,6 @@ export default function EditPost() {
           rows="10"
           required
         />
-      </div>
-
-      <div className="form-group">
-        <label>Status</label>
-        <select
-          value={postData.status}
-          onChange={(e) => setPostData(prev => ({ ...prev, status: e.target.value }))}
-          required
-        >
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
       </div>
 
       <button onClick={handleUpdatePost}>Save</button>

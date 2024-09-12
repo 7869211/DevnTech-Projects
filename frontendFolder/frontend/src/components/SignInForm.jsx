@@ -44,6 +44,7 @@ const SignInForm = () => {
         alert("Congratulations, you have successfully signed in!");
 
         navigate('/publishedposts');
+        window.location.reload();
       } else {
         setFormState((prevState) => ({
           ...prevState,
