@@ -10,10 +10,10 @@ const createPost = async (title, content, authorId, status = 'draft') => {
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0]; // Return the newly created post
+        return rows[0];
     } catch (err) {
         console.error('Error creating post:', err.message);
-        throw err; 
+        throw err;
     }
 };
 
@@ -22,7 +22,7 @@ const getAllPosts = async () => {
 
     try {
         const { rows } = await pool.query(query);
-        return rows; // Return all posts
+        return rows;
     } catch (err) {
         console.error('Error fetching posts:', err.message);
         throw err;
@@ -34,42 +34,42 @@ const getPostById = async (id) => {
 
     try {
         const { rows } = await pool.query(query, [id]);
-        return rows[0]; // Return the post found by ID
+        return rows[0];
     } catch (err) {
         console.error('Error fetching post by ID:', err.message);
         throw err;
     }
 };
 
-const updatePost = async (id, title, content, authorId, status) => {
+const updatePost = async (id, title, content, status) => {
     const query = `
         UPDATE posts
         SET title = $1, content = $2, status = $3, updated_at = NOW()
-        WHERE id = $4 AND author_id = $5
+        WHERE id = $4
         RETURNING *;
     `;
-    const values = [title, content, status, id, authorId];
+    const values = [title, content, status, id];
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0]; // Return the updated post
+        return rows[0];
     } catch (err) {
         console.error('Error updating post:', err.message);
         throw err;
     }
 };
 
-const deletePost = async (id, authorId) => {
+const deletePost = async (id) => {
     const query = `
         DELETE FROM posts
-        WHERE id = $1 AND author_id = $2
+        WHERE id = $1
         RETURNING *;
     `;
-    const values = [id, authorId];
+    const values = [id];
 
     try {
         const { rows } = await pool.query(query, values);
-        return rows[0]; // Return the deleted post
+        return rows[0];
     } catch (err) {
         console.error('Error deleting post:', err.message);
         throw err;
@@ -79,7 +79,7 @@ const deletePost = async (id, authorId) => {
 module.exports = {
     createPost,
     getAllPosts,
-    getPostById,  
+    getPostById,
     updatePost,
     deletePost
 };
