@@ -21,17 +21,14 @@ const Navbar = () => {
       }
     };
 
-    // Check authentication status on load
     checkAuth();
 
-    // Optional: Use an event listener to detect changes to localStorage (e.g., token is added)
     window.addEventListener('storage', checkAuth);
 
-    // Cleanup event listener
     return () => {
       window.removeEventListener('storage', checkAuth);
     };
-  }, []); // Empty dependency array ensures it runs once on mount
+  }, []); 
 
   const handleSignOut = () => {
     localStorage.removeItem("token"); 
@@ -68,7 +65,7 @@ const Navbar = () => {
               Drafts
             </Link>
             <Link to="/createpost" className="navbar-link" onClick={toggleMobileMenu}>
-              +New Post
+              Create
             </Link>
             <Link
               to="/" 

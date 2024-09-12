@@ -31,7 +31,7 @@ export default function CreatePost() {
   
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/posts/create_post",
+        "http://localhost:5000/api/posts",
         {
           title: postData.title,
           content: postData.description,

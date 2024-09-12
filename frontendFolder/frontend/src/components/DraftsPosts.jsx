@@ -14,7 +14,7 @@ export default function DraftPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts/showAllPosts");
+        const response = await axios.get("http://localhost:5000/api/posts");
         const allPosts = response.data;
   
         const draftPosts = allPosts.filter(post => post.status === 'draft');
@@ -38,12 +38,11 @@ export default function DraftPosts() {
     setActiveDropdown(activeDropdown === id ? null : id);
   };
 
-  // Handle publishing the post (update its status to 'published')
   const handlePublishPost = async (postId) => {
     const token = localStorage.getItem("token");
   
     try {
-      const fetchPostResponse = await axios.get(`http://localhost:5000/api/posts/get_post_by_id/${postId}`, {
+      const fetchPostResponse = await axios.get(`http://localhost:5000/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -54,11 +53,11 @@ export default function DraftPosts() {
         const { title, content } = post;  
   
         const response = await axios.put(
-          `http://localhost:5000/api/posts/update_post/${postId}`,
+          `http://localhost:5000/api/posts/${postId}`,
           {
             title, 
             content,
-            status: "published", // status changed
+            status: "published", 
           },
           {
             headers: {
@@ -92,12 +91,11 @@ export default function DraftPosts() {
     }
   };
   
-  // Handle editing the post
   const handleEditPost = async (postId) => {
     const token = localStorage.getItem("token");
   
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/get_post_by_id/${postId}`, {
+      const response = await axios.get(`http://localhost:5000/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

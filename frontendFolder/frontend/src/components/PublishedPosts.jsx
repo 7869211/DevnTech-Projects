@@ -10,10 +10,9 @@ export default function MyPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts/showAllPosts");
+        const response = await axios.get("http://localhost:5000/api/posts");
         const allPosts = response.data;
   
-        // Filter posts to show only those with status 'published'
         const publishedPosts = allPosts.filter(post => post.status === 'published');
         
         setPosts(publishedPosts);

@@ -7,7 +7,7 @@ export default function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [status, setStatus] = useState(""); // Include status in state
+  const [status, setStatus] = useState(""); 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export default function EditPost() {
       const token = localStorage.getItem("token");
   
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts/get_post_by_id/${id}`, {
+        const response = await axios.get(`http://localhost:5000/api/posts/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -27,7 +27,6 @@ export default function EditPost() {
           setTitle(post.title);
           setContent(post.content);
   
-          // Set the status from the post; fallback to 'draft' or 'published'
           setStatus(post.status || 'draft');
         }
       } catch (err) {
@@ -43,7 +42,6 @@ export default function EditPost() {
   const handleUpdatePost = async () => {
     const token = localStorage.getItem("token");
   
-    // Ensure that status is not null or undefined
     if (!status) {
       alert("Post status cannot be null. Please set a valid status.");
       return;
@@ -51,7 +49,7 @@ export default function EditPost() {
   
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/posts/update_post/${id}`,
+        `http://localhost:5000/api/posts/${id}`,
         {
           title,
           content,

@@ -40,8 +40,7 @@ const SignUpForm = () => {
         <h4>Register Account</h4>
         <p><h1>Create an account and start penning down your ideas</h1></p>
       </div>
-
-      {/* Sign Up Form */}
+      
       <div className="signup-form">
         <form onSubmit={handleSubmit}>
           <h3 className="signup-heading">Sign Up</h3>

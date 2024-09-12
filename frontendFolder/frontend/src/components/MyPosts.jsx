@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/ShowAllPosts.css";
-import {jwtDecode} from 'jwt-decode';
-
+import {jwtDecode} from 'jwt-decode'; 
 
 export default function MyPosts() {
   const [posts, setPosts] = useState([]);
@@ -15,7 +14,7 @@ export default function MyPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts/showAllPosts");
+        const response = await axios.get("http://localhost:5000/api/posts");
         const allPosts = response.data;
   
         const publishedPosts = allPosts.filter(post => post.status === 'published');
@@ -36,23 +35,53 @@ export default function MyPosts() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // Toggle dropdown menu visibility
   const toggleDropdown = (id) => {
     setActiveDropdown(activeDropdown === id ? null : id);
   };
 
-  const handleDeletePost = async (postId) => {
+  const getUserIdFromToken = () => {
     const token = localStorage.getItem("token");
+    if (!token) return null;
 
     try {
-      const response = await axios.delete(`http://localhost:5000/api/posts/delete_post/${postId}`, {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.id;  
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+
+  const handleDeletePost = async (postId) => {
+    const token = localStorage.getItem("token");
+    const userId = getUserIdFromToken();
+
+    if (!userId) {
+      alert("User not authenticated.");
+      return;
+    }
+
+    try {
+      const postResponse = await axios.get(`http://localhost:5000/api/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const post = postResponse.data;
+
+      if (post.author_id !== userId) {
+        alert("You are not authorized to delete this post.");
+        return;
+      }
+
+      const response = await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (response.status === 200) {
-        // Remove from frontend
         setPosts(posts.filter((post) => post.id !== postId));
         alert("Post deleted successfully");
       }
@@ -62,49 +91,33 @@ export default function MyPosts() {
     }
   };
 
-  // Handle editing the post
-  
-const getUserIdFromToken = () => {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
+  const handleEditPost = async (postId) => {
+    const token = localStorage.getItem("token");
 
-  try {
-    const decodedToken = jwtDecode(token);
-    return decodedToken.id;  
-  } catch (error) {
-    console.error("Error decoding token:", error);
-    return null;
-  }
-};
+    try {
+      const response = await axios.get(`http://localhost:5000/api/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-const handleEditPost = async (postId) => {
-  const token = localStorage.getItem("token");
+      if (response.status === 200) {
+        const post = response.data;
 
-  try {
-    const response = await axios.get(`http://localhost:5000/api/posts/get_post_by_id/${postId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+        const currentUserId = getUserIdFromToken();
 
-    if (response.status === 200) {
-      const post = response.data;
+        if (post.author_id !== currentUserId) {
+          alert("You are not authorized to edit this post.");
+          return;
+        }
 
-      const currentUserId = getUserIdFromToken();
-
-      if (post.author_id !== currentUserId) {
-        alert("You are not authorized to edit this post.");
-        return;
+        navigate(`/edit/${postId}`);
       }
-
-      navigate(`/edit/${postId}`);
+    } catch (err) {
+      console.error("Error fetching post details for authorization:", err);
+      alert("Failed to verify authorization.");
     }
-  } catch (err) {
-    console.error("Error fetching post details for authorization:", err);
-    alert("Failed to verify authorization.");
-  }
-};
-
+  };
 
   if (loading) {
     return <div>Loading...</div>;
