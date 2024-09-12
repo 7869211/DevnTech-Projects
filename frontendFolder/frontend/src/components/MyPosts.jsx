@@ -2,33 +2,61 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/ShowAllPosts.css";
-import {jwtDecode} from 'jwt-decode'; 
+import {jwtDecode} from 'jwt-decode';
+
+const useToken = () => {
+  const getToken = () => localStorage.getItem("token");
+  const decodeToken = () => {
+    const token = getToken();
+    if (!token) return null;
+    try {
+      return jwtDecode(token);
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+  return { getToken, decodeToken };
+};
 
 export default function MyPosts() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [activeDropdown, setActiveDropdown] = useState(null); 
-  const navigate = useNavigate(); 
+  const [state, setState] = useState({
+    posts: [],
+    loading: true,
+    error: null,
+    activeDropdown: null
+  });
+  const navigate = useNavigate();
+  const { getToken, decodeToken } = useToken(); 
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts");
+        const token = getToken();
+        const response = await axios.get("http://localhost:5000/api/posts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const allPosts = response.data;
-  
+
         const publishedPosts = allPosts.filter(post => post.status === 'published');
-        
-        setPosts(publishedPosts);
-        setLoading(false);
+        setState(prev => ({
+          ...prev,
+          posts: publishedPosts,
+          loading: false
+        }));
       } catch (err) {
-        setError("Error fetching posts");
-        setLoading(false);
+        setState(prev => ({
+          ...prev,
+          error: "Error fetching posts",
+          loading: false
+        }));
       }
     };
+
     fetchPosts();
   }, []);
-  
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -36,25 +64,15 @@ export default function MyPosts() {
   };
 
   const toggleDropdown = (id) => {
-    setActiveDropdown(activeDropdown === id ? null : id);
-  };
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-    if (!token) return null;
-
-    try {
-      const decodedToken = jwtDecode(token);
-      return decodedToken.id;  
-    } catch (error) {
-      console.error("Error decoding token:", error);
-      return null;
-    }
+    setState(prev => ({
+      ...prev,
+      activeDropdown: prev.activeDropdown === id ? null : id
+    }));
   };
 
   const handleDeletePost = async (postId) => {
-    const token = localStorage.getItem("token");
-    const userId = getUserIdFromToken();
+    const token = getToken();
+    const userId = decodeToken()?.id;
 
     if (!userId) {
       alert("User not authenticated.");
@@ -75,24 +93,25 @@ export default function MyPosts() {
         return;
       }
 
-      const response = await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+      await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (response.status === 200) {
-        setPosts(posts.filter((post) => post.id !== postId));
-        alert("Post deleted successfully");
-      }
+      setState(prev => ({
+        ...prev,
+        posts: prev.posts.filter(post => post.id !== postId)
+      }));
+      alert("Post deleted successfully");
     } catch (err) {
       console.error("Error deleting post:", err);
       alert("Failed to delete the post. You may not be authorized.");
     }
   };
 
-  const handleEditPost = async (postId) => {
-    const token = localStorage.getItem("token");
+  const handleEditPost = async (postId) => { 
+    const token = getToken();
 
     try {
       const response = await axios.get(`http://localhost:5000/api/posts/${postId}`, {
@@ -103,8 +122,7 @@ export default function MyPosts() {
 
       if (response.status === 200) {
         const post = response.data;
-
-        const currentUserId = getUserIdFromToken();
+        const currentUserId = decodeToken()?.id;
 
         if (post.author_id !== currentUserId) {
           alert("You are not authorized to edit this post.");
@@ -119,12 +137,12 @@ export default function MyPosts() {
     }
   };
 
-  if (loading) {
+  if (state.loading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (state.error) {
+    return <div>{state.error}</div>;
   }
 
   return (
@@ -135,10 +153,10 @@ export default function MyPosts() {
         </div>
 
         <div className="posts-grid">
-          {posts.length === 0 ? (
+          {state.posts.length === 0 ? (
             <h1 className="no-posts">No Post Found</h1>
           ) : (
-            posts.map((post) => (
+            state.posts.map((post) => (
               <div key={post.id} className="post-card">
                 <div className="post-title-container">
                   <div className="post-title">{post.title}</div>
@@ -147,7 +165,7 @@ export default function MyPosts() {
                     <span className="three-dots" onClick={() => toggleDropdown(post.id)}>
                       ...
                     </span>
-                    {activeDropdown === post.id && (
+                    {state.activeDropdown === post.id && (
                       <div className="dropdown-menu">
                         <button className="dropdown-item" onClick={() => handleEditPost(post.id)}>
                           Edit

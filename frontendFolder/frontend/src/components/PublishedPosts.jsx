@@ -3,33 +3,48 @@ import axios from "axios";
 import "../styles/ShowAllPosts.css";
 
 export default function MyPosts() {
-  const [posts, setPosts] = useState([]);
-  const [ loadig,setLoading] = useState(true);
-  const [ error,setError] = useState(null);
+  const [state, setState] = useState({
+    posts: [],
+    loading: true,
+    error: null,
+  });
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts");
-        const allPosts = response.data;
-  
+        const { data: allPosts } = await axios.get("http://localhost:5000/api/posts");
         const publishedPosts = allPosts.filter(post => post.status === 'published');
         
-        setPosts(publishedPosts);
-        setLoading(false);
+        setState(prevState => ({
+          ...prevState,
+          posts: publishedPosts,
+          loading: false
+        }));
       } catch (err) {
-        setError("Error fetching posts");
-        setLoading(false);
+        setState(prevState => ({
+          ...prevState,
+          error: "Error fetching posts",
+          loading: false
+        }));
       }
     };
     fetchPosts();
-  }, []);
-  
+  }, []); 
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+
+  const { posts, loading, error } = state;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <section className="posts-section">
@@ -42,19 +57,19 @@ export default function MyPosts() {
           {posts.length === 0 ? (
             <h1 className="no-posts">No Published Post Found</h1>
           ) : (
-            posts.map((post) => (
-              <div key={post.id} className="post-card">
+            posts.map(({ id, title, content, author_id, created_at }) => (
+              <div key={id} className="post-card">
                 <div className="post-title-container">
-                  <div className="post-title">{post.title}</div>
+                  <div className="post-title">{title}</div>
                 </div>
 
                 <div className="post-content">
-                  <p className="post-description">{post.content}</p>
+                  <p className="post-description">{content}</p>
                 </div>
 
                 <div className="post-footer">
-                  <p className="post-author">AuthorID: {post.author_id}</p>
-                  <p className="post-date">{formatDate(post.created_at)}</p>
+                  <p className="post-author">AuthorID: {author_id}</p>
+                  <p className="post-date">{formatDate(created_at)}</p>
                 </div>
               </div>
             ))

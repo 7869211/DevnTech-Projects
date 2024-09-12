@@ -4,10 +4,21 @@ import "../styles/SignInForm.css";
 import poster3 from "../styles/poster3.png";
 
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+    errorMessage: "",
+  });
+
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +29,10 @@ const SignInForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          email: formState.email,
+          password: formState.password,
+        }),
       });
 
       const data = await response.json();
@@ -26,18 +40,21 @@ const SignInForm = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token); 
         localStorage.setItem("isAuthenticated", "true"); 
-        
+
         alert("Congratulations, you have successfully signed in!");
 
         navigate('/publishedposts');
-
-        // Force a page reload to update the authenticated user links
-        window.location.reload(); 
       } else {
-        setErrorMessage(data.message || "Sign In failed");
+        setFormState((prevState) => ({
+          ...prevState,
+          errorMessage: data.message || "Sign In failed",
+        }));
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
+      setFormState((prevState) => ({
+        ...prevState,
+        errorMessage: "An error occurred. Please try again.",
+      }));
     }
   };
 
@@ -46,22 +63,24 @@ const SignInForm = () => {
       <div className="signin-form">
         <form onSubmit={handleSubmit}>
           <h3 className="signin-heading">Sign In</h3>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {formState.errorMessage && <p className="error-message">{formState.errorMessage}</p>}
           <div className="input-container">
             <input
               type="email"
+              name="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formState.email}
+              onChange={handleInputChange}
               required
             />
           </div>
           <div className="input-container">
             <input
               type="password"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formState.password}
+              onChange={handleInputChange}
               required
             />
           </div>

@@ -4,38 +4,34 @@ import "../styles/CreatePost.css";
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
-  const [postData, setPostData] = useState({
-    title: "",
-    description: "",
+  const [state, setState] = useState({
+    postData: { title: "", description: "" },
+    loading: false,
+    error: null,
+    success: false,
+    isDraft: false,
   });
+
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [isDraft, setIsDraft] = useState(false); 
 
   const handleSubmit = async (e, draft = false) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(false);
-    setIsDraft(draft); 
-  
+    setState(prevState => ({ ...prevState, loading: true, error: null, success: false, isDraft: draft }));
+
     const token = localStorage.getItem("token");
-  
+
     if (!token) {
-      setError("You must be logged in to create a post.");
-      setLoading(false);
+      setState(prevState => ({ ...prevState, error: "You must be logged in to create a post.", loading: false }));
       return;
     }
-  
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/posts",
         {
-          title: postData.title,
-          content: postData.description,
-          status: draft ? "draft" : "published", 
+          title: state.postData.title,
+          content: state.postData.description,
+          status: draft ? "draft" : "published",
         },
         {
           headers: {
@@ -45,29 +41,28 @@ export default function CreatePost() {
       );
       
       console.log(`${draft ? "Draft" : "Post"} created successfully:`, response.data);
-      setSuccess(true);
-      setPostData({ title: "", description: "" }); 
-  
+      setState(prevState => ({
+        ...prevState,
+        success: true,
+        postData: { title: "", description: "" } 
+      }));
+
       navigate(draft ? '/draftposts' : '/myposts');
     } catch (err) {
-      if (err.response) {
-        setError(err.response.data.message || "Failed to create post. Please try again.");
-      } else {
-        setError("An unexpected error occurred. Please try again.");
-      }
+      const errorMessage = err.response ? err.response.data.message || "Failed to create post. Please try again." : "An unexpected error occurred. Please try again.";
+      setState(prevState => ({ ...prevState, error: errorMessage }));
     } finally {
-      setLoading(false);
+      setState(prevState => ({ ...prevState, loading: false }));
     }
   };
-  
+
   return (
     <div className="create-post-container">
       <div className="create-post-box">
         <h2>Create a New Post</h2>
 
-        {success && <p className="success-msg">{isDraft ? "Draft" : "Post"} created successfully!</p>}
-
-        {error && <p className="error-msg">{error}</p>}
+        {state.success && <p className="success-msg">{state.isDraft ? "Draft" : "Post"} created successfully!</p>}
+        {state.error && <p className="error-msg">{state.error}</p>}
 
         <form onSubmit={(e) => handleSubmit(e, false)} className="form">
           <div className="form-group title-group">
@@ -75,10 +70,11 @@ export default function CreatePost() {
               type="text"
               className="text-editor-input"
               placeholder="Enter post title..."
-              value={postData.title}
-              onChange={(e) =>
-                setPostData({ ...postData, title: e.target.value })
-              }
+              value={state.postData.title}
+              onChange={(e) => setState(prevState => ({
+                ...prevState,
+                postData: { ...prevState.postData, title: e.target.value }
+              }))}
               required
             />
           </div>
@@ -88,26 +84,27 @@ export default function CreatePost() {
               className="text-editor-area"
               placeholder="Pen down your ideas here..."
               rows="12"
-              value={postData.description}
-              onChange={(e) =>
-                setPostData({ ...postData, description: e.target.value })
-              }
+              value={state.postData.description}
+              onChange={(e) => setState(prevState => ({
+                ...prevState,
+                postData: { ...prevState.postData, description: e.target.value }
+              }))}
               required
             ></textarea>
           </div>
 
-          <div className="btn-group"> 
-            <button type="submit" className="btn btn-create" disabled={loading}>
-              {loading && !isDraft ? "Creating Post..." : "Create Post"}
+          <div className="btn-group">
+            <button type="submit" className="btn btn-create" disabled={state.loading}>
+              {state.loading && !state.isDraft ? "Creating Post..." : "Create Post"}
             </button>
 
             <button 
               type="button" 
               className="btn btn-draft" 
-              disabled={loading} 
-              onClick={(e) => handleSubmit(e, true)} 
+              disabled={state.loading} 
+              onClick={(e) => handleSubmit(e, true)}
             >
-              {loading && isDraft ? "Saving as Draft..." : "Save as Draft"}
+              {state.loading && state.isDraft ? "Saving as Draft..." : "Save as Draft"}
             </button>
           </div>
         </form>

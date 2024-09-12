@@ -2,14 +2,23 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";  
 import "../styles/SignUpForm.css"; 
 
-
 const SignUpForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    errorMessage: "",
+  });
+
   const navigate = useNavigate();  
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,17 +29,27 @@ const SignUpForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          password: formState.password,
+        }),
       });
 
       const data = await response.json();
       if (response.ok) {
         navigate("/signin");  
       } else {
-        setErrorMessage(data.message || "Sign Up failed");
+        setFormState((prevState) => ({
+          ...prevState,
+          errorMessage: data.message || "Sign Up failed",
+        }));
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
+      setFormState((prevState) => ({
+        ...prevState,
+        errorMessage: "An error occurred. Please try again.",
+      }));
     }
   };
 
@@ -44,31 +63,34 @@ const SignUpForm = () => {
       <div className="signup-form">
         <form onSubmit={handleSubmit}>
           <h3 className="signup-heading">Sign Up</h3>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {formState.errorMessage && <p className="error-message">{formState.errorMessage}</p>}
           <div className="input-container">
             <input
               type="text"
+              name="name"
               placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formState.name}
+              onChange={handleInputChange}
               required
             />
           </div>
           <div className="input-container">
             <input
               type="email"
+              name="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formState.email}
+              onChange={handleInputChange}
               required
             />
           </div>
           <div className="input-container">
             <input
               type="password"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formState.password}
+              onChange={handleInputChange}
               required
             />
           </div>
